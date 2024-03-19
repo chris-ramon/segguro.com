@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+
+:root {
+  --primary-segguro-color : #F7AC00;
+  --secundary-segguro-color : #064E7F;
+  --gray-segguro-color : #4E4E4E;
+  --white-segguro-color : #FFFFFF;
+  --bg-segguro-color: #F5F4F4;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+}

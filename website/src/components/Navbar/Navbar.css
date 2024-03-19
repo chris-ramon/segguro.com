@@ -1,0 +1,117 @@
+.nav-container {
+  width: 100%;
+  display: flex;
+  /* position: relative; */
+  background-color: var(--white-segguro-color);
+  position: sticky;
+  top: 0; 
+  z-index: 400; 
+}
+.navbar {
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 0 6rem;
+  height: 72px;
+  margin-top: .3rem;
+  max-width: 1582px;
+  background-color: var(--white-segguro-color);
+  gap: 4rem;
+  
+}
+.navbar-logo {
+  margin-left: 50px;
+}
+.navbar-logo img {
+  max-width: 138px;
+}
+.navbar-links {
+  list-style: none;
+  display: flex;
+  font-weight: 600;
+  justify-content: space-evenly;
+  /* gap: 6rem; */
+  margin-right: 4rem;
+  color: var(--secundary-segguro-color);
+  width: 700px;
+}
+
+.navbar-link {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--secundary-segguro-color);
+  transition: color 0.3s;
+}
+
+.navbar-link:hover {
+  color: var(--primary-segguro-color);
+  border-bottom: 2px solid var(--primary-segguro-color);
+}
+.active  {
+  color: var(--primary-segguro-color);
+  border-bottom: 2px solid var(--primary-segguro-color);
+}
+
+.navbar .menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  transform:  translateY(130%);
+  margin-right: 3rem;
+}
+
+@media (max-width: 767px) {
+  .open {
+    display: none;
+  }
+  .navbar .menu {
+    display: block;
+  }
+  .navbar {
+    flex-direction: column;
+    padding: 0;
+    width: 100%;
+    justify-content: space-between;
+    gap: 0;
+    height: 100%;
+    align-items: start;
+  }
+  .navbar .navbar-links {
+    flex-direction: column;
+    background-color: var(--white-segguro-color);
+    align-items: center;
+    gap: .3rem;
+    background-color: var(--secundary-segguro-color);
+    padding: 1.5rem;
+    width: 100%;
+  }
+  .navbar-links .nav-link {
+    border: none;
+    width: 100%;
+    text-align: center;
+  }
+  .nav-link .navbar-link{
+    color: var(--white-segguro-color);
+    display: block;
+    padding: 1rem 0;
+    border-radius: 2rem;
+    transition: .3s;
+  }
+  
+  /* ------ */
+  .navbar-link:hover {
+    background-color: var(--primary-segguro-color);
+    width: 100%;
+    border: none;
+  }
+  .active  {
+    color: var(--primary-segguro-color);
+    border-bottom: none;
+    background-color: var(--primary-segguro-color);
+  }
+  .navbar-logo {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+  }
+}

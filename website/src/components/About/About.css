@@ -1,0 +1,280 @@
+.about-section {
+  padding: 8rem 0;
+  max-width: 1582px;
+  width: 100%;
+  margin: auto;
+}
+
+/* About Sectioon */
+
+.about-container, .section-lego-info {
+  background-color: var(--bg-segguro-color);
+  width: 100%;
+}
+
+.about-main {
+  padding: 6rem 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.main-txt h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--secundary-segguro-color);
+  margin-bottom: 5rem;
+  position: relative;
+  max-width: 100%;
+}
+.main-txt h2::before {
+  content: "";
+  border-bottom: 10px solid var(--primary-segguro-color);
+  position: absolute;
+  width: 90px;
+  top: 100%;
+
+}
+
+.main-txt p {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--gray-segguro-color);
+  max-width: 400px;
+}
+
+.main-img img {
+  max-width: 100%;
+}
+/* ------------------ */
+
+/* Lego Section */
+.section-lego h2, 
+.section-lego p {
+  text-align: center;
+}
+.section-lego h2:nth-child(2){
+  color: var(--secundary-segguro-color);
+  font-size: 2.6rem;
+}
+.section-lego h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary-segguro-color);
+  /* margin: 0 auto; */
+  margin-bottom: 2rem;
+}
+.section-lego p {
+  font-size: 1.125rem;
+  font-weight: 600;
+  max-width: 900px;
+  margin: auto;
+  line-height: 2.2rem;
+  color: var(--gray-segguro-color);
+}
+.section-lego {
+  display: flex;
+  justify-content: space-around;
+}
+.section-lego .grid-lego {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+.lego-img img {
+  max-width: 100%;
+}
+.row-lego {
+  display: none;
+}
+/* ------------------ */
+
+/* section-lego-info */
+.lego-info-img {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.lego-info-img .img img {
+  max-width: 100%;
+}
+.lego-info-card {
+  background-color: var(--secundary-segguro-color);
+}
+.lego-info-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 230px);
+  grid-template-rows: repeat(2, 184px);
+  /* grid-template-columns: repeat(auto-fit, minmax(230px)); */
+  gap: 3rem;
+}
+.lego-info-card{
+  padding: 2rem 0.7rem;
+  text-align: center;
+  color: var(--white-segguro-color);
+  cursor: pointer;
+  transition: transform .5s;
+  position: relative;
+  z-index: 70;
+}
+.lego-info-card:hover {
+  transform: scale(1.3);
+}
+.lego-info-card .lego-p {
+  display: none;
+}
+.lego-info-card:hover .lego-p {
+  display: inline-block;
+}
+.lego-info-card:hover .lego-card-img,
+.lego-info-card:hover .lego-h3 {
+  display: none;
+}
+.lego-info-img {
+  position: relative;
+  z-index: 50;
+}
+/* ------------ */
+
+/* section-banner */
+.section-banner {
+  position: relative;
+  max-height: 414px;
+}
+.banner-img {
+  background-image: url("/lego/bannerLego.png")
+}
+.banner-txt {
+  max-width: 1592px;
+  margin: auto;
+}
+.section-banner .banner-p {
+  color: var(--white-segguro-color);
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 6rem 12rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.12rem;
+}
+/* -------------- */
+
+/* section-solus */
+.section-solus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.section-solus .solus-img {
+  display: flex;
+  max-width: 700px;
+  align-items: center;
+  transition: transform .3s, border-bottom .3s;
+  border-bottom: 4px solid var(--primary-segguro-color);
+  box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.33);
+  margin: 1rem;
+}
+.section-solus .solus-img:hover {
+  transform: scale(1.1);
+  border-bottom: 4px solid var(--secundary-segguro-color);
+}
+.img-sol {
+  display: flex;
+  width: max-content;
+  height: max-content;
+}
+.img-sol img{
+  max-width: 200px;
+}
+.section-solus .solus-p {
+  color: var(--gray-segguro-color);
+  font-weight: 600;
+  margin: 0 1rem;
+}
+/* .section-solus .solus2 {
+  background-image: url('/lego/solu2.png');
+  background-size: cover;
+}
+.section-solus .solus3 {
+  background-image: url('/lego/solu3.png');
+  background-size: cover;
+} */
+
+@media (max-width: 940px) {
+  .section-banner .banner-p {
+    font-size: 1rem;
+    padding: 2rem;
+    line-height: 1.8rem;
+    letter-spacing: 0.12rem;
+  }
+  
+  .main-txt h2 {
+    margin-bottom: 4rem;
+    text-align: center;
+  }
+  
+  .main-txt p {
+    text-align: center;
+    max-width: 100%;
+    padding: 0 3rem;
+  }
+  .section-lego {
+    flex-wrap: wrap;
+    padding: 4rem 3rem;
+  }
+  .section-lego .grid-lego {
+    display: none;
+  }
+  .row-lego {
+    display: block;
+  }
+  .section-lego .lego-txt p {
+    line-height: 1.5rem;
+    margin: 3rem 0 2.5rem 0;
+  }
+  .lego-info-img .img {
+    padding: 0 2rem;
+  }
+  .section-solus {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (max-width: 650px) {
+  .lego-info-cards {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(1, 230px);
+    gap: 3rem;
+  }
+  
+  .section-lego {
+    padding-left:2rem;
+    padding-right:2rem;
+  }
+  /* .solus-img {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  } */
+}
+
+@media (max-width: 500px) {
+  .solus-img {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    width: 200px;
+  }
+  .section-solus .solus-p {
+    margin-bottom: 1rem;
+  }
+}
