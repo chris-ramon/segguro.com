@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import "./PageCourses.css";
 
@@ -76,12 +77,9 @@ const PageCourses = () => {
               <h3>Control de Caídas de Rocas</h3>
             </div>
             <span className="curso-btn">
-              <a
-                href="https://wa.me/+51967710904/?text=Información sobre el curso Control de Caídas de Rocas"
-                target="_blank"
-              >
+              <Link to="/cursos/caida-de-rocas">
                 CONSULTAR
-              </a>
+              </Link>
             </span>
           </div>
           <div className="card-curso" data-aos="zoom-in-left">
