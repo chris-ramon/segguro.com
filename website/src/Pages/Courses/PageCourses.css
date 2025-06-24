@@ -129,6 +129,18 @@
   color: var(--white-segguro-color);
 }
 
+.caida-rocas-content {
+  padding: 5rem 0;
+  min-height: 400px;
+}
+
+.white-content-area {
+  background-color: var(--white-segguro-color);
+  padding: 3rem;
+  border-radius: 10px;
+  min-height: 300px;
+}
+
 @media (max-width: 767px) {
   .courses-metod {
     padding: 0 1rem;
