@@ -6,6 +6,7 @@ import PageAbout from "./Pages/PageAbout/PageAbout";
 import PageServices from "./Pages/PageServices/PageServices";
 import PageCourses from "./Pages/Courses/PageCourses";
 import PageCaidaDeRocas from "./Pages/Courses/PageCaidaDeRocas";
+import PageCaidaDeRocasVideo from "./Pages/Courses/PageCaidaDeRocasVideo";
 import ScrollToTop from "./components/ScrollTop/ScrollTop";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             <Route path="/servicios" element={<PageServices />} />
             <Route path="/cursos" element={<PageCourses />} />
             <Route path="/cursos/caida-de-rocas" element={<PageCaidaDeRocas />} />
+            <Route path="/cursos/caida-de-rocas/video" element={<PageCaidaDeRocasVideo />} />
           </Route>
         </Routes>
       </BrowserRouter>
