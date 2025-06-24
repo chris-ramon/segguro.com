@@ -22,7 +22,19 @@ const PageCaidaDeRocas = () => {
       </main>
       <section className="caida-rocas-content section">
         <div className="white-content-area">
-          {/* White background content area - currently blank as requested */}
+          <div className="form-container">
+            <iframe 
+              src="https://docs.google.com/forms/d/e/1FAIpQLScO2-H2lhLAN0eoxxLo-Kqx-Rwmqk48_8mXJ8mrzpFITe4vEA/viewform?embedded=true" 
+              width="640" 
+              height="912" 
+              frameBorder="0" 
+              marginHeight="0" 
+              marginWidth="0"
+              title="Formulario de Caída de Rocas"
+            >
+              Cargando…
+            </iframe>
+          </div>
         </div>
       </section>
     </>
