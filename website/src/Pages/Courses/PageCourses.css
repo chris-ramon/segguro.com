@@ -148,6 +148,16 @@
   width: 100%;
 }
 
+.form-title {
+  font-size: 22px;
+  color: var(--secundary-segguro-color);
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 2rem;
+  text-decoration: 5px underline;
+  text-decoration-color: var(--primary-segguro-color);
+}
+
 .form-container iframe {
   max-width: 100%;
   border-radius: 8px;
