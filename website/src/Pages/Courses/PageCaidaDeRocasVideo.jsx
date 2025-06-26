@@ -22,7 +22,15 @@ const PageCaidaDeRocasVideo = () => {
       </main>
       <section className="caida-rocas-content section">
         <div className="white-content-area">
-          {/* Blank content area as requested */}
+          <div className="form-container">
+            <iframe
+              src="https://drive.google.com/file/d/1qBOsqgzN1hi8s7Tsodl4GFfBog8yHnud/preview"
+              width="800"
+              height="450"
+              allow="autoplay"
+              title="Control de Caídas de Rocas - Video"
+            ></iframe>
+          </div>
         </div>
       </section>
     </>
