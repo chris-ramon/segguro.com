@@ -22,6 +22,9 @@ const PageCaidaDeRocas = () => {
       </main>
       <section className="caida-rocas-content section">
         <div className="white-content-area">
+          <h2 className="form-title">
+            Por favor completar el siguiente formulario para poder ver el video del curso corto:
+          </h2>
           <div className="form-container">
             <iframe 
               src="https://docs.google.com/forms/d/e/1FAIpQLScO2-H2lhLAN0eoxxLo-Kqx-Rwmqk48_8mXJ8mrzpFITe4vEA/viewform?embedded=true" 
