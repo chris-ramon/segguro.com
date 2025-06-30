@@ -164,6 +164,99 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.custom-form {
+  max-width: 640px;
+  width: 100%;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-field {
+  margin-bottom: 1.5rem;
+}
+
+.form-field label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--secundary-segguro-color);
+  margin-bottom: 0.5rem;
+}
+
+.form-field input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
+}
+
+.form-field input:focus {
+  outline: none;
+  border-color: var(--primary-segguro-color);
+  box-shadow: 0 0 0 3px rgba(var(--primary-segguro-color), 0.1);
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+.form-submit {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.submit-button {
+  background-color: var(--primary-segguro-color);
+  color: var(--white-segguro-color);
+  padding: 0.75rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  min-width: 120px;
+}
+
+.submit-button:hover:not(:disabled) {
+  background-color: var(--secundary-segguro-color);
+  transform: translateY(-2px);
+}
+
+.submit-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submit-message {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.submit-message.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.submit-message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
 @media (max-width: 767px) {
   .courses-metod {
     padding: 0 1rem;
@@ -193,6 +286,13 @@
   .form-container iframe {
     width: 100%;
     height: 700px;
+  }
+  .custom-form {
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+  .form-field input {
+    padding: 0.6rem;
   }
 }
 @media (max-width: 450px) {
