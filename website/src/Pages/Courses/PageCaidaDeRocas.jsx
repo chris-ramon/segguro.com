@@ -1,83 +1,61 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import "./PageCourses.css";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 const PageCaidaDeRocas = () => {
-  const iframeRef = useRef(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
+  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset
+  } = useForm();
 
   useEffect(() => {
     AOS.init({ duration: "1000" });
   }, []);
 
-  useEffect(() => {
-    let checkInterval;
-    let redirectTimeout;
+  const onSubmit = async (data) => {
+    setIsSubmitting(true);
+    setSubmitMessage("");
 
-    const handleRedirect = () => {
-      console.log('Form submitted successfully! Redirecting in 3 seconds...');
-      
-      // Clear the checking interval
-      if (checkInterval) {
-        clearInterval(checkInterval);
-      }
-      
-      // Redirect after 3 seconds
-      redirectTimeout = setTimeout(() => {
-        window.location.href = `${window.location.origin}/cursos/caida-de-rocas/video`;
-      }, 3000);
-    };
+    try {
+      const response = await fetch('http://localhost:300/visitors/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nombres: data.nombres,
+          apellidos: data.apellidos,
+          telefono: data.telefono,
+          empresa: data.empresa,
+          cargo: data.cargo
+        })
+      });
 
-    const checkForThankYouMessage = () => {
-      try {
-        const iframe = iframeRef.current;
-        if (!iframe) return;
-
-        // Try to access iframe content
-        const iframeDocument = iframe.contentDocument || iframe.contentWindow?.document;
+      if (response.ok) {
+        setSubmitMessage("¡Gracias! Redirigiendo al video en 3 segundos...");
+        reset();
         
-        if (iframeDocument) {
-          const bodyText = iframeDocument.body?.innerText || iframeDocument.body?.textContent || '';
-          
-          if (bodyText.includes('¡Gracias!')) {
-            handleRedirect();
-          }
-        }
-      } catch (error) {
-        // Expected error due to cross-origin restrictions
-        // This is normal for Google Forms and doesn't indicate a problem
+        setTimeout(() => {
+          window.location.href = `${window.location.origin}/cursos/caida-de-rocas/video`;
+        }, 3000);
+      } else {
+        throw new Error('Error en la respuesta del servidor');
       }
-    };
-
-    // Listen for postMessage events from the iframe (alternative approach)
-    const handlePostMessage = (event) => {
-      // Check if the message is from Google Forms
-      if (event.origin !== 'https://docs.google.com') return;
-      
-      // Check if the message indicates form submission
-      if (event.data && typeof event.data === 'string' && event.data.includes('¡Gracias!')) {
-        handleRedirect();
-      }
-    };
-
-    // Add postMessage listener
-    window.addEventListener('message', handlePostMessage);
-    
-    // Start checking every 2 seconds (fallback method)
-    checkInterval = setInterval(checkForThankYouMessage, 2000);
-
-    // Cleanup function
-    return () => {
-      if (checkInterval) {
-        clearInterval(checkInterval);
-      }
-      if (redirectTimeout) {
-        clearTimeout(redirectTimeout);
-      }
-      window.removeEventListener('message', handlePostMessage);
-    };
-  }, []);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitMessage("Error al enviar el formulario. Por favor, inténtelo de nuevo.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   
   return (
     <>
@@ -96,18 +74,83 @@ const PageCaidaDeRocas = () => {
             Por favor completar el siguiente formulario para poder ver el video del curso corto:
           </h2>
           <div className="form-container">
-            <iframe 
-              ref={iframeRef}
-              src="https://docs.google.com/forms/d/e/1FAIpQLScO2-H2lhLAN0eoxxLo-Kqx-Rwmqk48_8mXJ8mrzpFITe4vEA/viewform?embedded=true" 
-              width="640" 
-              height="912" 
-              frameBorder="0" 
-              marginHeight="0" 
-              marginWidth="0"
-              title="Formulario de Caída de Rocas"
-            >
-              Cargando…
-            </iframe>
+            <form onSubmit={handleSubmit(onSubmit)} className="custom-form">
+              <div className="form-field">
+                <label htmlFor="nombres">Nombres *</label>
+                <input
+                  type="text"
+                  id="nombres"
+                  {...register("nombres", { required: "Este campo es obligatorio" })}
+                />
+                {errors.nombres && (
+                  <p className="error-message">{errors.nombres.message}</p>
+                )}
+              </div>
+
+              <div className="form-field">
+                <label htmlFor="apellidos">Apellidos *</label>
+                <input
+                  type="text"
+                  id="apellidos"
+                  {...register("apellidos", { required: "Este campo es obligatorio" })}
+                />
+                {errors.apellidos && (
+                  <p className="error-message">{errors.apellidos.message}</p>
+                )}
+              </div>
+
+              <div className="form-field">
+                <label htmlFor="telefono">Número de teléfono *</label>
+                <input
+                  type="text"
+                  id="telefono"
+                  {...register("telefono", { required: "Este campo es obligatorio" })}
+                />
+                {errors.telefono && (
+                  <p className="error-message">{errors.telefono.message}</p>
+                )}
+              </div>
+
+              <div className="form-field">
+                <label htmlFor="empresa">Empresa *</label>
+                <input
+                  type="text"
+                  id="empresa"
+                  {...register("empresa", { required: "Este campo es obligatorio" })}
+                />
+                {errors.empresa && (
+                  <p className="error-message">{errors.empresa.message}</p>
+                )}
+              </div>
+
+              <div className="form-field">
+                <label htmlFor="cargo">Cargo *</label>
+                <input
+                  type="text"
+                  id="cargo"
+                  {...register("cargo", { required: "Este campo es obligatorio" })}
+                />
+                {errors.cargo && (
+                  <p className="error-message">{errors.cargo.message}</p>
+                )}
+              </div>
+
+              <div className="form-submit">
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="submit-button"
+                >
+                  {isSubmitting ? "Enviando..." : "Enviar"}
+                </button>
+              </div>
+
+              {submitMessage && (
+                <div className={`submit-message ${submitMessage.includes("Error") ? "error" : "success"}`}>
+                  {submitMessage}
+                </div>
+              )}
+            </form>
           </div>
         </div>
       </section>
