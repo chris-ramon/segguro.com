@@ -5,6 +5,7 @@ import (
 
 	"github.com/graphql-go/handler"
 
+	"github.com/chris-ramon/golang-scaffolding/pkg/cors"
 	"github.com/chris-ramon/golang-scaffolding/pkg/ctxutil"
 	"github.com/chris-ramon/golang-scaffolding/pkg/route"
 )
@@ -19,22 +20,31 @@ type routes struct {
 }
 
 func (ro *routes) All() []route.Route {
+	corsMiddleware := cors.Middleware(cors.DefaultConfig())
+	
 	return []route.Route{
 		route.Route{
 			HTTPMethod: "GET",
 			Path:       "/graphql",
-			Handler: func(w http.ResponseWriter, r *http.Request) {
+			Handler: corsMiddleware(func(w http.ResponseWriter, r *http.Request) {
 				r = r.WithContext(ctxutil.WithAuthHeader(r.Context(), r.Header))
 				ro.handlers.GetGraphQL().ServeHTTP(w, r)
-			},
+			}),
 		},
 		route.Route{
 			HTTPMethod: "POST",
 			Path:       "/graphql",
-			Handler: func(w http.ResponseWriter, r *http.Request) {
+			Handler: corsMiddleware(func(w http.ResponseWriter, r *http.Request) {
 				r = r.WithContext(ctxutil.WithAuthHeader(r.Context(), r.Header))
 				ro.handlers.PostGraphQL().ServeHTTP(w, r)
-			},
+			}),
+		},
+		route.Route{
+			HTTPMethod: "OPTIONS",
+			Path:       "/graphql",
+			Handler: corsMiddleware(func(w http.ResponseWriter, r *http.Request) {
+				// CORS middleware handles OPTIONS requests
+			}),
 		},
 	}
 }
