@@ -35,3 +35,29 @@ var UserType = graphql.NewObject(graphql.ObjectConfig{
 		},
 	},
 })
+
+var VisitorType = graphql.NewObject(graphql.ObjectConfig{
+	Name: "VisitorType",
+	Fields: graphql.Fields{
+		"name": &graphql.Field{
+			Description: "The name of the visitor.",
+			Type:        graphql.String,
+		},
+		"lastname": &graphql.Field{
+			Description: "The lastname of the visitor.",
+			Type:        graphql.String,
+		},
+		"phone": &graphql.Field{
+			Description: "The phone number of the visitor.",
+			Type:        graphql.String,
+		},
+		"companyName": &graphql.Field{
+			Description: "The company name of the visitor.",
+			Type:        graphql.String,
+		},
+		"companyRole": &graphql.Field{
+			Description: "The company role of the visitor.",
+			Type:        graphql.String,
+		},
+	},
+})
