@@ -25,21 +25,44 @@ const PageCaidaDeRocas = () => {
     setSubmitMessage("");
 
     try {
-      const response = await fetch('http://localhost:300/visitors/register', {
+      const graphqlQuery = {
+        query: `
+          mutation CreateVisitor($name: String!, $lastname: String!, $phone: String!, $companyName: String!, $companyRole: String!) {
+            createVisitor(
+              name: $name,
+              lastname: $lastname,
+              phone: $phone,
+              companyName: $companyName,
+              companyRole: $companyRole
+            ) {
+              name
+              lastname
+              phone
+              companyName
+              companyRole
+            }
+          }
+        `,
+        variables: {
+          name: data.nombres,
+          lastname: data.apellidos,
+          phone: data.telefono,
+          companyName: data.empresa,
+          companyRole: data.cargo
+        }
+      };
+
+      const response = await fetch('http://localhost:8080/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          nombres: data.nombres,
-          apellidos: data.apellidos,
-          telefono: data.telefono,
-          empresa: data.empresa,
-          cargo: data.cargo
-        })
+        body: JSON.stringify(graphqlQuery)
       });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (response.ok && !result.errors) {
         setSubmitMessage("¡Gracias! Redirigiendo al video en 3 segundos...");
         reset();
         
@@ -47,7 +70,7 @@ const PageCaidaDeRocas = () => {
           window.location.href = `${window.location.origin}/cursos/caida-de-rocas/video`;
         }, 3000);
       } else {
-        throw new Error('Error en la respuesta del servidor');
+        throw new Error(result.errors ? result.errors[0].message : 'Error en la respuesta del servidor');
       }
     } catch (error) {
       console.error('Error submitting form:', error);
