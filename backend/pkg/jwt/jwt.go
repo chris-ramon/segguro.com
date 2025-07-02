@@ -27,35 +27,45 @@ type jwt struct {
 }
 
 func (j *jwt) Generate(ctx context.Context, data map[string]string) (*string, error) {
-	expiresAt := jwtV5.NewNumericDate(time.Now().Add(j.defaultExpireTimeInHours * time.Hour))
+	// TODO: https://github.com/chris-ramon/segguro.com/issues/46
+	/*
+		expiresAt := jwtV5.NewNumericDate(time.Now().Add(j.defaultExpireTimeInHours * time.Hour))
 
-	t := jwtV5.New(jwtV5.GetSigningMethod("RS256"))
-	t.Claims = customClaims{
-		data,
-		jwtV5.RegisteredClaims{
-			ExpiresAt: expiresAt,
-		},
-	}
+		t := jwtV5.New(jwtV5.GetSigningMethod("RS256"))
+		t.Claims = customClaims{
+			data,
+			jwtV5.RegisteredClaims{
+				ExpiresAt: expiresAt,
+			},
+		}
 
-	jwtToken, err := t.SignedString(j.signKey)
-	if err != nil {
-		return nil, err
-	}
+		jwtToken, err := t.SignedString(j.signKey)
+		if err != nil {
+			return nil, err
+		}
 
+		return &jwtToken, nil
+	*/
+	jwtToken := ""
 	return &jwtToken, nil
 }
 
 func (j *jwt) Validate(ctx context.Context, jwtToken string) (map[string]string, error) {
-	parsedJWTToken, err := jwtV5.ParseWithClaims(jwtToken, &customClaims{}, func(t *jwtV5.Token) (interface{}, error) {
-		return j.verifyKey, nil
-	})
-	if err != nil {
-		return nil, err
-	}
+	// TODO: https://github.com/chris-ramon/segguro.com/issues/46
+	/*
+		parsedJWTToken, err := jwtV5.ParseWithClaims(jwtToken, &customClaims{}, func(t *jwtV5.Token) (interface{}, error) {
+			return j.verifyKey, nil
+		})
+		if err != nil {
+			return nil, err
+		}
 
-	claims := parsedJWTToken.Claims.(*customClaims)
+		claims := parsedJWTToken.Claims.(*customClaims)
 
-	return claims.Data, nil
+		return claims.Data, nil
+	*/
+
+	return map[string]string{}, nil
 }
 
 func NewJWT() (*jwt, error) {
