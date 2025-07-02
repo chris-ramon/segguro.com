@@ -27,16 +27,18 @@ const PageCaidaDeRocas = () => {
     try {
       const graphqlQuery = {
         query: `
-          mutation CreateVisitor($name: String!, $lastname: String!, $phone: String!, $companyName: String!, $companyRole: String!) {
+          mutation CreateVisitor($name: String!, $lastname: String!, $email: String!, $phone: String!, $companyName: String!, $companyRole: String!) {
             createVisitor(
               name: $name,
               lastname: $lastname,
+              email: $email,
               phone: $phone,
               companyName: $companyName,
               companyRole: $companyRole
             ) {
               name
               lastname
+              email
               phone
               companyName
               companyRole
@@ -46,6 +48,7 @@ const PageCaidaDeRocas = () => {
         variables: {
           name: data.nombres,
           lastname: data.apellidos,
+          email: data.email,
           phone: data.telefono,
           companyName: data.empresa,
           companyRole: data.cargo
@@ -119,6 +122,24 @@ const PageCaidaDeRocas = () => {
                 />
                 {errors.apellidos && (
                   <p className="error-message">{errors.apellidos.message}</p>
+                )}
+              </div>
+
+              <div className="form-field">
+                <label htmlFor="email">Email *</label>
+                <input
+                  type="email"
+                  id="email"
+                  {...register("email", { 
+                    required: "Este campo es obligatorio",
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Ingrese un email válido"
+                    }
+                  })}
+                />
+                {errors.email && (
+                  <p className="error-message">{errors.email.message}</p>
                 )}
               </div>
 

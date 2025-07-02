@@ -47,6 +47,10 @@ var VisitorType = graphql.NewObject(graphql.ObjectConfig{
 			Description: "The lastname of the visitor.",
 			Type:        graphql.String,
 		},
+		"email": &graphql.Field{
+			Description: "The email of the visitor.",
+			Type:        graphql.String,
+		},
 		"phone": &graphql.Field{
 			Description: "The phone number of the visitor.",
 			Type:        graphql.String,
