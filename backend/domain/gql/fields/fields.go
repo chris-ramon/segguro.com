@@ -108,6 +108,9 @@ var CreateVisitorField = &graphql.Field{
 		"lastname": &graphql.ArgumentConfig{
 			Type: graphql.NewNonNull(graphql.String),
 		},
+		"email": &graphql.ArgumentConfig{
+			Type: graphql.NewNonNull(graphql.String),
+		},
 		"phone": &graphql.ArgumentConfig{
 			Type: graphql.NewNonNull(graphql.String),
 		},
@@ -125,6 +128,11 @@ var CreateVisitorField = &graphql.Field{
 		}
 
 		lastname, err := fieldFromArgs[string](p.Args, "lastname")
+		if err != nil {
+			return nil, err
+		}
+
+		email, err := fieldFromArgs[string](p.Args, "email")
 		if err != nil {
 			return nil, err
 		}
@@ -147,6 +155,7 @@ var CreateVisitorField = &graphql.Field{
 		visitor := map[string]interface{}{
 			"name":        name,
 			"lastname":    lastname,
+			"email":       email,
 			"phone":       phone,
 			"companyName": companyName,
 			"companyRole": companyRole,
