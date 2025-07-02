@@ -9,10 +9,10 @@ import (
 	jwtV5 "github.com/golang-jwt/jwt/v5"
 )
 
-//go:embed app.rsa
+// TODO: https://github.com/chris-ramon/segguro.com/issues/46
 var appRsa []byte // openssl genrsa -out app.rsa 2048
 
-//go:embed app.rsa.pub
+// TODO: https://github.com/chris-ramon/segguro.com/issues/46
 var appRsaPub []byte // openssl rsa -in app.rsa -pubout > app.rsa.pub
 
 type customClaims struct {
@@ -59,23 +59,28 @@ func (j *jwt) Validate(ctx context.Context, jwtToken string) (map[string]string,
 }
 
 func NewJWT() (*jwt, error) {
-	signBytes := appRsa
+	// TODO: https://github.com/chris-ramon/segguro.com/issues/46
+	/*
+		signBytes := appRsa
 
-	sKey, err := jwtV5.ParseRSAPrivateKeyFromPEM(signBytes)
-	if err != nil {
-		return nil, err
-	}
+		sKey, err := jwtV5.ParseRSAPrivateKeyFromPEM(signBytes)
+		if err != nil {
+			return nil, err
+		}
 
-	verifyBytes := appRsaPub
+		verifyBytes := appRsaPub
 
-	vKey, err := jwtV5.ParseRSAPublicKeyFromPEM(verifyBytes)
-	if err != nil {
-		return nil, err
-	}
+		vKey, err := jwtV5.ParseRSAPublicKeyFromPEM(verifyBytes)
+		if err != nil {
+			return nil, err
+		}
 
-	return &jwt{
-		defaultExpireTimeInHours: 24,
-		signKey:                  sKey,
-		verifyKey:                vKey,
-	}, nil
+		return &jwt{
+			defaultExpireTimeInHours: 24,
+			signKey:                  sKey,
+			verifyKey:                vKey,
+		}, nil
+	*/
+
+	return &jwt{}, nil
 }
