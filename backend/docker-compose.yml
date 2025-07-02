@@ -3,8 +3,8 @@ version: "3.9"
 services:
   app:
     working_dir: /app
-    image: golang:1.22.3
-    command: sh -c "PORT=8080 DB_USER=admin DB_PWD=admin DB_HOST=db DB_NAME=local DB_SSL_MODE=disable ./bin/_dev.sh"
+    image: golang:1.23.10
+    command: sh -c "PORT=8080 DB_USER=admin DB_PWD=admin DB_HOST=db DB_NAME=local DB_SSL_MODE=disable GOOGLE_CREDENTIALS_JSON=$GOOGLE_CREDENTIALS_JSON GOOGLE_SPREADSHEET_ID=$GOOGLE_SPREADSHEET_ID GOOGLE_SHEET_RANGE=$GOOGLE_SHEET_RANGE ./bin/_dev.sh"
     volumes:
       - ./:/app
       - go-pkg-mod:/go/pkg/mod:cached

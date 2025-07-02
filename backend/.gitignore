@@ -3,3 +3,5 @@ domain/auth/app.rsa.pub
 coverage.html
 coverage.out
 *.swp
+service-account.json
+.env
