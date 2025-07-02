@@ -6,6 +6,7 @@ import (
 	"github.com/chris-ramon/golang-scaffolding/domain/auth/mappers"
 	"github.com/chris-ramon/golang-scaffolding/domain/gql/types"
 	usersMappers "github.com/chris-ramon/golang-scaffolding/domain/users/mappers"
+	visitorMappers "github.com/chris-ramon/golang-scaffolding/domain/visitors/mappers"
 	"github.com/chris-ramon/golang-scaffolding/pkg/ctxutil"
 )
 
@@ -152,15 +153,18 @@ var CreateVisitorField = &graphql.Field{
 			return nil, err
 		}
 
-		visitor := map[string]interface{}{
-			"name":        name,
-			"lastname":    lastname,
-			"email":       email,
-			"phone":       phone,
-			"companyName": companyName,
-			"companyRole": companyRole,
+		srvs, err := servicesFromResolveParams(p)
+		if err != nil {
+			return nil, err
 		}
 
-		return visitor, nil
+		visitor, err := srvs.VisitorService.CreateVisitor(p.Context, name, lastname, email, phone, companyName, companyRole)
+		if err != nil {
+			return nil, err
+		}
+
+		visitorAPI := visitorMappers.VisitorFromTypeToAPI(visitor)
+
+		return visitorAPI, nil
 	},
 }
