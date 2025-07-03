@@ -5,3 +5,4 @@ coverage.out
 *.swp
 service-account.json
 .env
+main
