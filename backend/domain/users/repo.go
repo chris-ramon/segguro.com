@@ -2,41 +2,45 @@ package users
 
 import (
 	"context"
-	"fmt"
+	// "fmt"
 
-	"github.com/chris-ramon/golang-scaffolding/db"
-	"github.com/chris-ramon/golang-scaffolding/db/models"
+	// "github.com/chris-ramon/golang-scaffolding/db"
+	// "github.com/chris-ramon/golang-scaffolding/db/models"
 	userTypes "github.com/chris-ramon/golang-scaffolding/domain/users/types"
 )
 
 type repo struct {
-	db db.DB
+	// TODO: Enable db support — https://github.com/chris-ramon/segguro.com/issues/51.
+	// db db.DB
 }
 
 func (r *repo) FindUsers(ctx context.Context) ([]*userTypes.User, error) {
-	args := models.ListUsersParams{
-		Limit:  10,
-		Offset: 0,
-	}
+	/*
+		args := models.ListUsersParams{
+			Limit:  10,
+			Offset: 0,
+		}
 
-	users, err := r.db.Queries().ListUsers(ctx, args)
+		users, err := r.db.Queries().ListUsers(ctx, args)
 
-	if err != nil {
-		return nil, err
-	}
+		if err != nil {
+			return nil, err
+		}
 
-	var result []*userTypes.User
+		var result []*userTypes.User
 
-	for _, user := range users {
-		result = append(result, &userTypes.User{
-			ID:       fmt.Sprintf("%d", user.ID),
-			Username: user.Username,
-		})
-	}
+		for _, user := range users {
+			result = append(result, &userTypes.User{
+				ID:       fmt.Sprintf("%d", user.ID),
+				Username: user.Username,
+			})
+		}
 
-	return result, nil
+		return result, nil
+	*/
+	return nil, nil
 }
 
-func NewRepo(db db.DB) *repo {
-	return &repo{db: db}
+func NewRepo() *repo {
+	return &repo{}
 }

@@ -7,7 +7,7 @@ import (
 	"slices"
 
 	"github.com/chris-ramon/golang-scaffolding/config"
-	"github.com/chris-ramon/golang-scaffolding/db"
+	// "github.com/chris-ramon/golang-scaffolding/db"
 	"github.com/chris-ramon/golang-scaffolding/domain/admin"
 	"github.com/chris-ramon/golang-scaffolding/domain/auth"
 	"github.com/chris-ramon/golang-scaffolding/domain/gql"
@@ -22,22 +22,25 @@ func main() {
 	}
 
 	conf := config.New()
-	dbConf := config.NewDBConfig()
+	/*
+	  // TODO: Enable db support — https://github.com/chris-ramon/segguro.com/issues/51.
+		dbConf := config.NewDBConfig()
 
-	db, err := db.New(dbConf)
-	if err != nil {
-		handleErr(err)
-	}
+		db, err := db.New(dbConf)
+		if err != nil {
+			handleErr(err)
+		}
 
-	if err := db.Migrate(); err != nil {
-		handleErr(err)
-	} else {
-		log.Println("successfully run migrations")
-	}
+		if err := db.Migrate(); err != nil {
+			handleErr(err)
+		} else {
+			log.Println("successfully run migrations")
+		}
+	*/
 
 	router := http.NewServeMux()
 
-	usersRepo := users.NewRepo(db)
+	usersRepo := users.NewRepo()
 	usersService := users.NewService(usersRepo)
 	usersHandlers, err := users.NewHandlers(usersService)
 	if err != nil {
