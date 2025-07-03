@@ -1,19 +1,25 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import "./PageCourses.css";
+import { environment } from "../../environment/environment";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+const graphqlURL =
+  process.env.NODE_ENV === "production"
+    ? environment.gateway.graphqlURL["production"]
+    : environment.gateway.graphqlURL["development"];
+
 const PageCaidaDeRocas = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
-  
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm();
 
   useEffect(() => {
@@ -51,16 +57,16 @@ const PageCaidaDeRocas = () => {
           email: data.email,
           phone: data.telefono,
           companyName: data.empresa,
-          companyRole: data.cargo
-        }
+          companyRole: data.cargo,
+        },
       };
 
-      const response = await fetch('http://localhost:8080/graphql', {
-        method: 'POST',
+      const response = await fetch(graphqlURL, {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(graphqlQuery)
+        body: JSON.stringify(graphqlQuery),
       });
 
       const result = await response.json();
@@ -68,21 +74,27 @@ const PageCaidaDeRocas = () => {
       if (response.ok && !result.errors) {
         setSubmitMessage("¡Gracias! Redirigiendo al video en 3 segundos...");
         reset();
-        
+
         setTimeout(() => {
           window.location.href = `${window.location.origin}/cursos/caida-de-rocas/video`;
         }, 3000);
       } else {
-        throw new Error(result.errors ? result.errors[0].message : 'Error en la respuesta del servidor');
+        throw new Error(
+          result.errors
+            ? result.errors[0].message
+            : "Error en la respuesta del servidor",
+        );
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitMessage("Error al enviar el formulario. Por favor, inténtelo de nuevo.");
+      console.error("Error submitting form:", error);
+      setSubmitMessage(
+        "Error al enviar el formulario. Por favor, inténtelo de nuevo.",
+      );
     } finally {
       setIsSubmitting(false);
     }
   };
-  
+
   return (
     <>
       <main className="page-courses-main" data-aos="fade-down">
@@ -97,7 +109,8 @@ const PageCaidaDeRocas = () => {
       <section className="caida-rocas-content section">
         <div className="white-content-area">
           <h2 className="form-title">
-            Por favor completar el siguiente formulario para poder ver el video del curso corto:
+            Por favor completar el siguiente formulario para poder ver el video
+            del curso corto:
           </h2>
           <div className="form-container">
             <form onSubmit={handleSubmit(onSubmit)} className="custom-form">
@@ -106,7 +119,9 @@ const PageCaidaDeRocas = () => {
                 <input
                   type="text"
                   id="nombres"
-                  {...register("nombres", { required: "Este campo es obligatorio" })}
+                  {...register("nombres", {
+                    required: "Este campo es obligatorio",
+                  })}
                 />
                 {errors.nombres && (
                   <p className="error-message">{errors.nombres.message}</p>
@@ -118,7 +133,9 @@ const PageCaidaDeRocas = () => {
                 <input
                   type="text"
                   id="apellidos"
-                  {...register("apellidos", { required: "Este campo es obligatorio" })}
+                  {...register("apellidos", {
+                    required: "Este campo es obligatorio",
+                  })}
                 />
                 {errors.apellidos && (
                   <p className="error-message">{errors.apellidos.message}</p>
@@ -130,12 +147,12 @@ const PageCaidaDeRocas = () => {
                 <input
                   type="email"
                   id="email"
-                  {...register("email", { 
+                  {...register("email", {
                     required: "Este campo es obligatorio",
                     pattern: {
                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: "Ingrese un email válido"
-                    }
+                      message: "Ingrese un email válido",
+                    },
                   })}
                 />
                 {errors.email && (
@@ -148,7 +165,9 @@ const PageCaidaDeRocas = () => {
                 <input
                   type="text"
                   id="telefono"
-                  {...register("telefono", { required: "Este campo es obligatorio" })}
+                  {...register("telefono", {
+                    required: "Este campo es obligatorio",
+                  })}
                 />
                 {errors.telefono && (
                   <p className="error-message">{errors.telefono.message}</p>
@@ -160,7 +179,9 @@ const PageCaidaDeRocas = () => {
                 <input
                   type="text"
                   id="empresa"
-                  {...register("empresa", { required: "Este campo es obligatorio" })}
+                  {...register("empresa", {
+                    required: "Este campo es obligatorio",
+                  })}
                 />
                 {errors.empresa && (
                   <p className="error-message">{errors.empresa.message}</p>
@@ -172,7 +193,9 @@ const PageCaidaDeRocas = () => {
                 <input
                   type="text"
                   id="cargo"
-                  {...register("cargo", { required: "Este campo es obligatorio" })}
+                  {...register("cargo", {
+                    required: "Este campo es obligatorio",
+                  })}
                 />
                 {errors.cargo && (
                   <p className="error-message">{errors.cargo.message}</p>
@@ -180,8 +203,8 @@ const PageCaidaDeRocas = () => {
               </div>
 
               <div className="form-submit">
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   disabled={isSubmitting}
                   className="submit-button"
                 >
@@ -190,7 +213,9 @@ const PageCaidaDeRocas = () => {
               </div>
 
               {submitMessage && (
-                <div className={`submit-message ${submitMessage.includes("Error") ? "error" : "success"}`}>
+                <div
+                  className={`submit-message ${submitMessage.includes("Error") ? "error" : "success"}`}
+                >
                   {submitMessage}
                 </div>
               )}
