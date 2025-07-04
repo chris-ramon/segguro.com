@@ -7,18 +7,18 @@ import (
 
 // Config holds the CORS configuration
 type Config struct {
-	AllowedOrigins []string
-	AllowedMethods []string
-	AllowedHeaders []string
+	AllowedOrigins   []string
+	AllowedMethods   []string
+	AllowedHeaders   []string
 	AllowCredentials bool
 }
 
-// DefaultConfig returns a default CORS configuration suitable for development
+// DefaultConfig returns a default CORS configuration suitable for multiple environments.
 func DefaultConfig() *Config {
 	return &Config{
-		AllowedOrigins: []string{"http://localhost:5173", "http://localhost:3000"},
-		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
-		AllowedHeaders: []string{"Origin", "Content-Type", "Accept", "Authorization", "X-Requested-With"},
+		AllowedOrigins:   []string{"http://localhost:5173", "https://gateway-segguro-com.onrender.com"},
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowedHeaders:   []string{"Origin", "Content-Type", "Accept", "Authorization", "X-Requested-With"},
 		AllowCredentials: true,
 	}
 }
@@ -28,27 +28,27 @@ func Middleware(config *Config) func(http.HandlerFunc) http.HandlerFunc {
 	return func(next http.HandlerFunc) http.HandlerFunc {
 		return func(w http.ResponseWriter, r *http.Request) {
 			origin := r.Header.Get("Origin")
-			
+
 			// Check if origin is allowed
 			if origin != "" && isOriginAllowed(origin, config.AllowedOrigins) {
 				w.Header().Set("Access-Control-Allow-Origin", origin)
 			}
-			
+
 			// Set other CORS headers
 			w.Header().Set("Access-Control-Allow-Methods", strings.Join(config.AllowedMethods, ", "))
 			w.Header().Set("Access-Control-Allow-Headers", strings.Join(config.AllowedHeaders, ", "))
-			
+
 			if config.AllowCredentials {
 				w.Header().Set("Access-Control-Allow-Credentials", "true")
 			}
-			
+
 			// Handle preflight request
 			if r.Method == "OPTIONS" {
 				w.Header().Set("Access-Control-Max-Age", "86400") // Cache preflight for 24 hours
 				w.WriteHeader(http.StatusOK)
 				return
 			}
-			
+
 			// Continue to next handler
 			next(w, r)
 		}
