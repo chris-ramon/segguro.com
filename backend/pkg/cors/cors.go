@@ -13,7 +13,7 @@ type Config struct {
 	AllowCredentials bool
 }
 
-// DefaultConfig returns a default CORS configuration suitable for development
+// DefaultConfig returns a default CORS configuration suitable for multiple environments.
 func DefaultConfig() *Config {
 	return &Config{
 		AllowedOrigins:   []string{"http://localhost:5173", "https://gateway-segguro-com.onrender.com"},
