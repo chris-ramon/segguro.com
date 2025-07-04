@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 import "./PageCourses.css";
 
@@ -7,6 +7,9 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const PageCourses = () => {
+  const [searchParams] = useSearchParams();
+  const version = searchParams.get('version');
+  
   useEffect(() => {
     AOS.init({ duration: "1000" });
   }, []);
@@ -77,9 +80,18 @@ const PageCourses = () => {
               <h3>Control de Caídas de Rocas</h3>
             </div>
             <span className="curso-btn">
-              <Link to="/cursos/caida-de-rocas">
-                CONSULTAR
-              </Link>
+              {version === '2' ? (
+                <Link to="/cursos/caida-de-rocas">
+                  CONSULTAR
+                </Link>
+              ) : (
+                <a
+                  href="https://wa.me/+51967710904/?text=Información sobre el curso Control de Caídas de Rocas"
+                  target="_blank"
+                >
+                  CONSULTAR
+                </a>
+              )}
             </span>
           </div>
           <div className="card-curso" data-aos="zoom-in-left">
