@@ -16,7 +16,7 @@ type Config struct {
 // DefaultConfig returns a default CORS configuration suitable for multiple environments.
 func DefaultConfig() *Config {
 	return &Config{
-		AllowedOrigins:   []string{"http://localhost:5173", "https://gateway-segguro-com.onrender.com"},
+		AllowedOrigins:   []string{"http://localhost:5173", "https://gateway-segguro-com.onrender.com", "https://www.segguro.com", "https://segguro.com"},
 		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowedHeaders:   []string{"Origin", "Content-Type", "Accept", "Authorization", "X-Requested-With"},
 		AllowCredentials: true,
