@@ -3,6 +3,8 @@ package cors
 import (
 	"net/http"
 	"strings"
+
+	"github.com/chris-ramon/golang-scaffolding/config"
 )
 
 // Config holds the CORS configuration
@@ -14,9 +16,19 @@ type Config struct {
 }
 
 // DefaultConfig returns a default CORS configuration suitable for multiple environments.
-func DefaultConfig() *Config {
+func DefaultConfig(cfg *config.Config) *Config {
+	allowedOrigins := []string{}
+	localAllowedOrigins := []string{"http://localhost:5173"}
+	productionAllowedOrigins := []string{"https://gateway-segguro-com.onrender.com", "https://www.segguro.com", "https://segguro.com"}
+
+	if cfg.Env == config.ProductionEnv {
+		allowedOrigins = productionAllowedOrigins
+	} else if cfg.Env == config.LocalEnv {
+		allowedOrigins = localAllowedOrigins
+	}
+
 	return &Config{
-		AllowedOrigins:   []string{"http://localhost:5173", "https://gateway-segguro-com.onrender.com", "https://www.segguro.com", "https://segguro.com"},
+		AllowedOrigins:   allowedOrigins,
 		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowedHeaders:   []string{"Origin", "Content-Type", "Accept", "Authorization", "X-Requested-With"},
 		AllowCredentials: true,
