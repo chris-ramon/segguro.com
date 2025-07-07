@@ -2,8 +2,12 @@ package config
 
 import "os"
 
+const ProductionEnv string = "production"
+const LocalEnv string = "local"
+
 type Config struct {
 	Port string
+	Env  string
 }
 
 type DBConfig struct {
@@ -17,6 +21,7 @@ type DBConfig struct {
 func New() *Config {
 	return &Config{
 		Port: os.Getenv("PORT"),
+		Env:  os.Getenv("ENV"),
 	}
 }
 

@@ -23,19 +23,19 @@ func main() {
 
 	conf := config.New()
 	/*
-	  // TODO: Enable db support — https://github.com/chris-ramon/segguro.com/issues/51.
-		dbConf := config.NewDBConfig()
+		  // TODO: Enable db support — https://github.com/chris-ramon/segguro.com/issues/51.
+			dbConf := config.NewDBConfig()
 
-		db, err := db.New(dbConf)
-		if err != nil {
-			handleErr(err)
-		}
+			db, err := db.New(dbConf)
+			if err != nil {
+				handleErr(err)
+			}
 
-		if err := db.Migrate(); err != nil {
-			handleErr(err)
-		} else {
-			log.Println("successfully run migrations")
-		}
+			if err := db.Migrate(); err != nil {
+				handleErr(err)
+			} else {
+				log.Println("successfully run migrations")
+			}
 	*/
 
 	router := http.NewServeMux()
@@ -70,7 +70,7 @@ func main() {
 		handleErr(err)
 	}
 
-	gqlRoutes := gql.NewRoutes(gqlHandlers)
+	gqlRoutes := gql.NewRoutes(conf, gqlHandlers)
 
 	adminHandlers, err := admin.NewHandlers()
 	if err != nil {
