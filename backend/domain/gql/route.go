@@ -5,6 +5,7 @@ import (
 
 	"github.com/graphql-go/handler"
 
+	"github.com/chris-ramon/golang-scaffolding/config"
 	"github.com/chris-ramon/golang-scaffolding/pkg/cors"
 	"github.com/chris-ramon/golang-scaffolding/pkg/ctxutil"
 	"github.com/chris-ramon/golang-scaffolding/pkg/route"
@@ -17,11 +18,12 @@ type Handlers interface {
 
 type routes struct {
 	handlers Handlers
+	config   *config.Config
 }
 
 func (ro *routes) All() []route.Route {
-	corsMiddleware := cors.Middleware(cors.DefaultConfig())
-	
+	corsMiddleware := cors.Middleware(cors.DefaultConfig(ro.config))
+
 	return []route.Route{
 		route.Route{
 			HTTPMethod: "GET",
@@ -49,6 +51,9 @@ func (ro *routes) All() []route.Route {
 	}
 }
 
-func NewRoutes(handlers Handlers) *routes {
-	return &routes{handlers: handlers}
+func NewRoutes(config *config.Config, handlers Handlers) *routes {
+	return &routes{
+		config:   config,
+		handlers: handlers,
+	}
 }
