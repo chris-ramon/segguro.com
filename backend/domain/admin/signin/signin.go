@@ -15,7 +15,7 @@ func NewFormPage() (admin.Pager, error) {
 
 	return admin.NewSideFormPage(admin.SideFormPageConfig{
 		BackgroundImage: sideFormBackgroundImage,
-		FooterLabel:     "Copyright © Your Website 2023.",
+		FooterLabel:     "Copyright © https://www.segguro.com.",
 		PageConfig: admin.PageConfig{
 			Icon: icon.Icon{
 				Type: icon.Lock,
