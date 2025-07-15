@@ -52,7 +52,7 @@ func NewLayout() *layout.Layout {
 			},
 		},
 		Title:       "Admin Title",
-		FooterLabel: "Copyright © Your Website 2022.",
+		FooterLabel: "Copyright © https://www.segguro.com.",
 		Theme: &layout.Theme{
 			Palette: layout.Palette{
 				Primary: layout.PaletteColor{
