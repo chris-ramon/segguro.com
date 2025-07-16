@@ -257,6 +257,37 @@
   border: 1px solid #f5c6cb;
 }
 
+.checkbox-label {
+  display: flex !important;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-weight: 600 !important;
+  color: var(--secundary-segguro-color) !important;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: auto !important;
+  margin: 0;
+  margin-top: 0.25rem;
+  cursor: pointer;
+}
+
+.checkbox-text {
+  line-height: 1.5;
+}
+
+.terms-link {
+  color: var(--primary-segguro-color);
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.terms-link:hover {
+  color: var(--secundary-segguro-color);
+}
+
 @media (max-width: 767px) {
   .courses-metod {
     padding: 0 1rem;
