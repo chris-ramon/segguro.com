@@ -33,7 +33,7 @@ const PageCaidaDeRocas = () => {
     try {
       const graphqlQuery = {
         query: `
-          mutation CreateVisitor($name: String!, $lastname: String!, $email: String!, $phone: String!, $companyName: String!, $companyRole: String!, $termsAndConditions: Boolean!) {
+          mutation CreateVisitor($name: String!, $lastname: String!, $email: String!, $phone: String!, $companyName: String!, $companyRole: String!, $termsAndConditions: String!) {
             createVisitor(
               name: $name,
               lastname: $lastname,
