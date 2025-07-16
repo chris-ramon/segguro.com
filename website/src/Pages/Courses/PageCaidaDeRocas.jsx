@@ -33,14 +33,15 @@ const PageCaidaDeRocas = () => {
     try {
       const graphqlQuery = {
         query: `
-          mutation CreateVisitor($name: String!, $lastname: String!, $email: String!, $phone: String!, $companyName: String!, $companyRole: String!) {
+          mutation CreateVisitor($name: String!, $lastname: String!, $email: String!, $phone: String!, $companyName: String!, $companyRole: String!, $termsAndConditions: Boolean!) {
             createVisitor(
               name: $name,
               lastname: $lastname,
               email: $email,
               phone: $phone,
               companyName: $companyName,
-              companyRole: $companyRole
+              companyRole: $companyRole,
+              termsAndConditions: $termsAndConditions
             ) {
               name
               lastname
@@ -48,6 +49,7 @@ const PageCaidaDeRocas = () => {
               phone
               companyName
               companyRole
+              termsAndConditions
             }
           }
         `,
@@ -58,6 +60,7 @@ const PageCaidaDeRocas = () => {
           phone: data.telefono,
           companyName: data.empresa,
           companyRole: data.cargo,
+          termsAndConditions: data.termsAndConditions,
         },
       };
 
@@ -199,6 +202,33 @@ const PageCaidaDeRocas = () => {
                 />
                 {errors.cargo && (
                   <p className="error-message">{errors.cargo.message}</p>
+                )}
+              </div>
+
+              <div className="form-field">
+                <label className="checkbox-label">
+                  <input
+                    type="checkbox"
+                    id="termsAndConditions"
+                    {...register("termsAndConditions", {
+                      required: "Debe aceptar los términos y condiciones",
+                    })}
+                  />
+                  <span className="checkbox-text">
+                    Aceptar{" "}
+                    <a
+                      href="/terminos-condiciones"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="terms-link"
+                    >
+                      términos y condiciones
+                    </a>
+                    . *
+                  </span>
+                </label>
+                {errors.termsAndConditions && (
+                  <p className="error-message">{errors.termsAndConditions.message}</p>
                 )}
               </div>
 
