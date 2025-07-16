@@ -18,14 +18,15 @@ type service struct {
 	sheetRange      string
 }
 
-func (s *service) CreateVisitor(ctx context.Context, name, lastname, email, phone, companyName, companyRole string) (*visitorTypes.Visitor, error) {
+func (s *service) CreateVisitor(ctx context.Context, name, lastname, email, phone, companyName, companyRole, termsAndConditions string) (*visitorTypes.Visitor, error) {
 	visitor := &visitorTypes.Visitor{
-		Name:        name,
-		Lastname:    lastname,
-		Email:       email,
-		Phone:       phone,
-		CompanyName: companyName,
-		CompanyRole: companyRole,
+		Name:               name,
+		Lastname:           lastname,
+		Email:              email,
+		Phone:              phone,
+		CompanyName:        companyName,
+		CompanyRole:        companyRole,
+		TermsAndConditions: termsAndConditions,
 	}
 
 	// Convert visitor data to spreadsheet row
@@ -36,6 +37,7 @@ func (s *service) CreateVisitor(ctx context.Context, name, lastname, email, phon
 		visitor.Phone,
 		visitor.CompanyName,
 		visitor.CompanyRole,
+		visitor.TermsAndConditions,
 	}
 
 	// Create the request to append data
@@ -101,7 +103,7 @@ func NewService() (*service, error) {
 	sheetRange := os.Getenv("GOOGLE_SHEET_RANGE")
 	if sheetRange == "" {
 		// Default range - append to Sheet1 starting from column A
-		sheetRange = "Sheet1!A:F"
+		sheetRange = "Sheet1!A:G"
 	}
 
 	return &service{

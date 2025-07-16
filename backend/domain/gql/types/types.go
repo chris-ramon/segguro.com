@@ -63,5 +63,9 @@ var VisitorType = graphql.NewObject(graphql.ObjectConfig{
 			Description: "The company role of the visitor.",
 			Type:        graphql.String,
 		},
+		"termsAndConditions": &graphql.Field{
+			Description: "The terms and conditions acceptance of the visitor.",
+			Type:        graphql.String,
+		},
 	},
 })

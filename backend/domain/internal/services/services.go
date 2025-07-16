@@ -17,7 +17,7 @@ type UserService interface {
 }
 
 type VisitorService interface {
-	CreateVisitor(ctx context.Context, name, lastname, email, phone, companyName, companyRole string) (*visitorTypes.Visitor, error)
+	CreateVisitor(ctx context.Context, name, lastname, email, phone, companyName, companyRole, termsAndConditions string) (*visitorTypes.Visitor, error)
 }
 
 type Services struct {

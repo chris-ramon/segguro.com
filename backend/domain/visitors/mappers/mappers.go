@@ -7,11 +7,12 @@ import (
 
 func VisitorFromTypeToAPI(visitor *types.Visitor) api.Visitor {
 	return api.Visitor{
-		Name:        visitor.Name,
-		Lastname:    visitor.Lastname,
-		Email:       visitor.Email,
-		Phone:       visitor.Phone,
-		CompanyName: visitor.CompanyName,
-		CompanyRole: visitor.CompanyRole,
+		Name:               visitor.Name,
+		Lastname:           visitor.Lastname,
+		Email:              visitor.Email,
+		Phone:              visitor.Phone,
+		CompanyName:        visitor.CompanyName,
+		CompanyRole:        visitor.CompanyRole,
+		TermsAndConditions: visitor.TermsAndConditions,
 	}
 }
