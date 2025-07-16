@@ -121,6 +121,9 @@ var CreateVisitorField = &graphql.Field{
 		"companyRole": &graphql.ArgumentConfig{
 			Type: graphql.NewNonNull(graphql.String),
 		},
+		"termsAndConditions": &graphql.ArgumentConfig{
+			Type: graphql.NewNonNull(graphql.String),
+		},
 	},
 	Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 		name, err := fieldFromArgs[string](p.Args, "name")
@@ -153,12 +156,17 @@ var CreateVisitorField = &graphql.Field{
 			return nil, err
 		}
 
+		termsAndConditions, err := fieldFromArgs[string](p.Args, "termsAndConditions")
+		if err != nil {
+			return nil, err
+		}
+
 		srvs, err := servicesFromResolveParams(p)
 		if err != nil {
 			return nil, err
 		}
 
-		visitor, err := srvs.VisitorService.CreateVisitor(p.Context, name, lastname, email, phone, companyName, companyRole)
+		visitor, err := srvs.VisitorService.CreateVisitor(p.Context, name, lastname, email, phone, companyName, companyRole, termsAndConditions)
 		if err != nil {
 			return nil, err
 		}
