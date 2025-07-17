@@ -25,7 +25,7 @@ const PageTermsConditions = () => {
           <div className="terms-text" data-aos="fade-up">
             <h3>1. INFORMACIÓN GENERAL</h3>
             <p>
-              Los presentes Términos y Condiciones regulan el uso del sitio web de Segguro Consulting 
+              Los presentes Términos y Condiciones regulan el uso del sitio web de Segguro Consulting S.A.C.
               y los servicios de capacitación en línea que ofrecemos. Al acceder y utilizar nuestro 
               sitio web, usted acepta cumplir con estos términos.
             </p>
@@ -43,7 +43,7 @@ const PageTermsConditions = () => {
             </p>
             <p>
               <strong>2.3 Uso exclusivo interno:</strong> Nos comprometemos a utilizar la información 
-              recopilada exclusivamente para fines comerciales internos de Segguro Consulting y empresas 
+              recopilada exclusivamente para fines comerciales internos de Segguro Consulting S.A.C. y empresas 
               relacionadas. No compartimos, vendemos ni distribuimos su información personal a terceros 
               sin su consentimiento expreso.
             </p>
@@ -89,7 +89,7 @@ const PageTermsConditions = () => {
             </p>
             <p>
               <strong>5.3 Uso del contenido:</strong> Todo el contenido educativo está protegido por 
-              derechos de autor y es para uso personal y educativo únicamente.
+              derechos de autor, es para uso personal y educativo únicamente.
             </p>
 
             <h3>6. PRIVACIDAD Y CONFIDENCIALIDAD</h3>
@@ -103,13 +103,13 @@ const PageTermsConditions = () => {
             <h3>7. PROPIEDAD INTELECTUAL</h3>
             <p>
               Todo el contenido del sitio web, incluyendo textos, gráficos, logos, imágenes, videos 
-              y software, es propiedad de Segguro Consulting o sus licenciantes y está protegido por 
+              y software, es propiedad de Segguro Consulting S.A.C. o sus licenciantes y está protegido por 
               las leyes de propiedad intelectual aplicables.
             </p>
 
             <h3>8. LIMITACIÓN DE RESPONSABILIDAD</h3>
             <p>
-              Segguro Consulting no será responsable por daños directos, indirectos, incidentales, 
+              Segguro Consulting S.A.C. no será responsable por daños directos, indirectos, incidentales, 
               especiales o consecuentes que resulten del uso o la imposibilidad de usar el sitio web 
               o los servicios ofrecidos.
             </p>
@@ -175,20 +175,19 @@ const PageTermsConditions = () => {
               través de:
             </p>
             <ul>
-              <li>Correo electrónico: [información de contacto]</li>
-              <li>Teléfono: [número de teléfono]</li>
-              <li>Dirección: [dirección de la empresa]</li>
+              <li>Correo electrónico: gramon@segguro.com.</li>
+              <li>Teléfono: (+51) 967710904.</li>
+              <li>Dirección: Pje Almería 159 Urb Portada del Sol La Molina, Lima, Perú.</li>
             </ul>
 
             <h3>18. FECHA DE VIGENCIA</h3>
             <p>
-              Estos términos y condiciones entran en vigor a partir del {new Date().toLocaleDateString('es-PE')} 
-              y se actualizarán según sea necesario.
+              Estos términos y condiciones entran en vigor a partir del 17/07/2025 y se actualizarán según sea necesario.
             </p>
 
             <p className="terms-footer">
               <strong>
-                Al utilizar nuestro sitio web y servicios, usted reconoce haber leído, comprendido y 
+                Al utilizar nuestro sitio web y servicios, usted reconoce haber leído, comprendido, 
                 aceptado estos términos y condiciones en su totalidad.
               </strong>
             </p>
